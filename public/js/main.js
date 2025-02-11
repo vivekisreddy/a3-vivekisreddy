@@ -3,11 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.querySelector("#exercise-table tbody");
     const editIndex = document.getElementById("edit-index");
 
+
+    if (!form) {
+        console.error("Exercise form element not found");
+        return;
+    }
     let exercises = []; // Store the fetched exercises globally
 
     const fetchExercises = async () => {
         try {
             const response = await fetch("/data"); // Ensure this endpoint is correct
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                console.error("Error fetching exercises:", errorMessage);
+                return;
+            }
+
             exercises = await response.json();
             console.log(exercises); // Log the response to see the data
             updateTable(exercises);
