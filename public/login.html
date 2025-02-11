@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<h2>Login to Workout Tracker</h2>
+
+<!-- Login Form -->
+<form id="login-form" style="display: block;">
+    <h3>Login</h3>
+    <label for="login-username">Username:</label>
+    <input type="text" id="login-username" name="username" required>
+    <br>
+    <label for="login-password">Password:</label>
+    <input type="password" id="login-password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+</form>
+
+<!-- Registration Form -->
+<form id="register-form" style="display: none;">
+    <h3>Create Account</h3>
+    <label for="register-username">Username:</label>
+    <input type="text" id="register-username" name="username" required>
+    <br>
+    <label for="register-password">Password:</label>
+    <input type="password" id="register-password" name="password" required>
+    <br>
+    <button type="submit">Register</button>
+</form>
+
+<!-- Toggle Between Login and Register -->
+<p id="toggle-text" style="cursor: pointer;">Don't have an account? Register here</p>
+
+<script>
+    // Toggle between login and registration form
+    document.getElementById("toggle-text").addEventListener("click", function() {
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const toggleText = document.getElementById("toggle-text");
+
+        if (loginForm.style.display === "none") {
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+            toggleText.innerHTML = "Don't have an account? Register here";
+        } else {
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+            toggleText.innerHTML = "Already have an account? Login here";
+        }
+    });
+
+    // Handle login form submission
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            window.location.href = "/";  // Redirect to index on success
+        } else {
+            alert("Invalid username or password");
+        }
+    });
+
+    // Handle registration form submission
+    document.getElementById("register-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("register-username").value;
+        const password = document.getElementById("register-password").value;
+
+        const response = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            window.location.href = "/";  // Redirect to index on success
+        } else {
+            alert("Error registering user");
+        }
+    });
+</script>
+</body>
+</html>

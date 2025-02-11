@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Personalized Workout Tracker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    <script src="js/main.js" defer></script>
+    <script>
+        async function checkAuth() {
+            const response = await fetch("/check-auth");
+            const data = await response.json();
+            if (!data.authenticated) {
+                window.location.href = "/login.html"; // Redirect to login if not authenticated
+            }
+        }
+        checkAuth();
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<div class="container mx-auto p-6">
+    <header class="text-center mb-6">
+        <h1 class="text-3xl font-bold">Workout Tracker</h1>
+        <p class="text-lg text-gray-600">Track your exercises and view your progress!</p>
+    </header>
+
+    <main>
+        <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Add Exercise</h2>
+            <form id="exercise-form" class="space-y-4">
+                <div>
+                    <label for="exerciseName" class="block text-sm font-medium">Exercise Name:</label>
+                    <input type="text" id="exerciseName" name="name" required class="w-full p-2 border rounded">
+                </div>
+
+                <div>
+                    <label for="exerciseType" class="block text-sm font-medium">Exercise Type:</label>
+                    <select id="exerciseType" name="type" required class="w-full p-2 border rounded">
+                        <option value="cardio">Cardio</option>
+                        <option value="strength">Strength</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="exerciseDuration" class="block text-sm font-medium">Duration (minutes):</label>
+                    <input type="number" id="exerciseDuration" name="duration" min="1" required class="w-full p-2 border rounded">
+                </div>
+
+                <div>
+                    <label for="exerciseNotes" class="block text-sm font-medium">Notes:</label>
+                    <input type="text" id="exerciseNotes" name="notes" class="w-full p-2 border rounded">
+                </div>
+
+                <input type="hidden" id="edit-index">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Exercise</button>
+            </form>
+        </section>
+
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Exercise Log</h2>
+            <table class="w-full border-collapse border border-gray-300" id="exercise-table">
+                <thead>
+                <tr class="bg-gray-200">
+                    <th class="border p-2">Exercise Name</th>
+                    <th class="border p-2">Type</th>
+                    <th class="border p-2">Duration (min)</th>
+                    <th class="border p-2">Notes</th>
+                    <th class="border p-2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Data will be dynamically populated -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "name": "cs4241-c25-a2-short-stack",
+  "version": "0.1.0",
+  "description": "WPI CS4241-C25 Assignment A2",
+  "author": "Vivek Reddy Kasireddy",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.6",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "chart.js": "^4.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mime": "^2.4.4",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.10.0",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "passport-local": "^1.0.0"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekisreddy/a3-vivekisreddy.git"
+  },
+  "keywords": [
+    "a3"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vivekisreddy/a3-vivekisreddy/issues"
+  },
+  "homepage": "https://github.com/vivekisreddy/a3-vivekisreddy#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "tailwindcss": "^4.0.6"
+  }
+}
