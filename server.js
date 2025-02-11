@@ -9,14 +9,17 @@ const bcrypt = require("bcrypt");  // For password hashing
 const app = express();
 const port = 3000;
 
-// MongoDB Connection (Updated)
-mongoose.connect("mongodb://localhost:27017/exercisesdb")
+mongoose.connect("mongodb+srv://vkasireddy1:<db_password>@a3cs4241.hl2vl.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => {
-        console.log("Connected to MongoDB!");
+        console.log("Connected to MongoDB Atlas!");
     })
     .catch((err) => {
-        console.error("Error connecting to MongoDB:", err);
+        console.error("Error connecting to MongoDB Atlas:", err);
     });
+
 
 // Define the exercise schema (including notes field)
 const exerciseSchema = new mongoose.Schema({
